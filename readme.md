@@ -24,12 +24,13 @@ My preferred Powershell commands for the above, run from the base project folder
         venv\Scripts\activate
         python.exe -m pip install --upgrade pip
         pip install -r requirements.txt
-        pyhton manage.py makemigrations
-        python manage.py migrate
-        python manage.py createsuperuser
-        mv '.env update and rename to .env' .env
+        cp '.env update and rename to .env' .env
         python -c "import secrets; print(secrets.token_urlsafe())"
 
-Edit the .env file and add the secret key output above, then run from vsCode.
+Then edit the .env file and add the secret key output above, then run from vsCode.
+
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py createsuperuser
 
 Then over to you.
