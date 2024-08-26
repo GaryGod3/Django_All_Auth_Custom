@@ -1,0 +1,14 @@
+{% extends "account/account_base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content_well %}
+  <h1>Update Name</h1>
+    <form action="{% url 'edit_user_details' %}" method="post" class="form">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+      <button type="submit" class="btn btn-primary">Update</button>
+      {% endbuttons %}
+    </form>
+{% endblock content_well %}

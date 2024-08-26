@@ -1,0 +1,7 @@
+# Used to load environment variables from a .env file
+python-dotenv
+
+# Django stuff
+Django
+django-bootstrap4
+django-allauth

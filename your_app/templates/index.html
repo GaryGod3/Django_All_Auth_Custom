@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block page_header %}
+<div class="jumbotron">
+    <center>
+        <h1 class="dislplay-3"><b>Y</b>our <b>A</b>pp</h1>
+
+        <p class="lead">What is your site about?</p>
+        <p class="lead">Who is your audience?</p>
+        <p><b>{{ page_title }}</b></p>
+
+        {% if not user.is_authenticated %}
+        <div>
+            <a class="btn btn-primary" href="{% url 'account_login' %}" role="button">Log in &raquo;</a>
+
+            <a class="btn btn-primary" href="{% url 'account_signup' %}" role="button">Register &raquo;</a>
+        </div>
+        {% else %}
+
+            <a class="btn btn-primary" href="{% url 'your_app:index' 'Option1' %}" role="button">Option1 &raquo;</a>
+
+        {% endif %}
+
+        <div style="border-style:solid; border-radius: 15pt;max-width: 100%;margin: 30pt;padding: 10pt"><a
+                href="https://www.bloomberg.com/news/articles/2022-03-18/world-s-happiest-ranking-goes-to-finland-for-fifth-year-in-a-row"
+                target="blank">“The lesson of the World Happiness Report over the years is that social support,
+                generosity to one another, and <b>honesty in government</b> are crucial for well-being,” Jeffrey Sachs,
+                director of the Center for Sustainable Development at Columbia University.</a>
+        </div>
+
+        <h1>{{ long_content }}</h1>
+
+    </center>
+</div>
+{% endblock page_header %}
+{% block content %}
+{% endblock content %}

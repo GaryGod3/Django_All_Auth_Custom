@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <h3>Edit Account</h3>
+        <ul class="nav flex-column">
+        <li><a href="{% url 'account_logout' %}">Sign out</a></li>
+        <li><a href="{% url 'edit_user_details' %}">Name</a></li>
+        <li><a href="{% url 'account_email' %}">Email</a></li>
+        <li><a href="{% url 'account_change_password' %}">Password</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-7 mt-5 mt-sm-0">
+        {% block content_well %}{% endblock content_well %}
+      </div>
+      <div class="col-sm-3 card mt-3 mt-sm-0 bg-light small">
+        <div class="card-header mb-2 mt-2">
+          <strong>User : {{ user }}</strong>
+        </div>
+        <div class="card-body">
+          <strong>First_name</strong>
+          <br/>
+          {{ user.first_name }}
+          <br/>
+          <strong>Last_name</strong>
+          <br/>
+          {{ user.last_name }}
+          <br/>
+          <br/>
+          <strong>Last_login</strong>
+          <br/>
+          {{ user.last_login }}
+          <br/>
+          <strong>First_login</strong>
+          <br/>
+          {{ user.date_joined }}
+          <br/>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
