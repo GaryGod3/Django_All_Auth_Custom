@@ -20,8 +20,8 @@ Once you've cloned the repo into your own project folder
 ## Commands
 My preferred Powershell commands for the above, run from the base project folder.
 
-        python -m venv venv
-        venv\Scripts\activate
+        python -m venv .venv
+        .venv\Scripts\activate
         python.exe -m pip install --upgrade pip
         pip install -r requirements.txt
         cp '.env update and rename to .env' .env
