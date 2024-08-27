@@ -5,7 +5,7 @@ It features single homepage with a menu bar with the links that show on the inde
 
 ## Next Steps
 Once you've cloned the repo into your own project folder
-1. create a virtual env
+1. create a virtual env as .venv
 2. activate it
 3. install the required packages
 4. make and migrate the database
