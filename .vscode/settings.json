@@ -1,5 +1,0 @@
-{
-    "flake8.args": [
-        "--config=.vscode/flake8_config.ini"
-    ],
-}
