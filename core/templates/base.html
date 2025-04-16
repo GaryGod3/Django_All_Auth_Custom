@@ -1,15 +1,14 @@
 <!doctype html>
+<html lang="en">
 
-{% load bootstrap4 %}
-
+{% load bootstrap5 %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'core/style.css' %}"/>
-<html lang="en"/>
 <head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
     <meta charset="utf-8"/>
     <meta name="viewport"
-          content="width=device-width, initial-scale-1, shrink-to-fit=no"/>
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     {% if page_title %}
         <title>Your App: {{ page_title }}</title>
     {% else %}
@@ -17,51 +16,14 @@
             {% block head_title %}{% endblock head_title %}
         </title>
     {% endif %}
+
+    {% comment %} Load Bootstrap CSS and Site CSS {% endcomment %}
     {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous"/>
-    {% comment %}
-        <!-- FontAwesome CDN -->
-        <link rel="stylesheet"
-              href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-              integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-              crossorigin="anonymous">
-    {% endcomment %}
     <link href="{% static 'css/main.css' %}" rel="stylesheet" media="screen"/>
-    <!-- Jquery CDN - must come before Select 2 usage -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <!-- Select 2 CNDs -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-          rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body class="body_for_fixed_nav">
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-    <script>
-        //Get the button
-        var mybutton = document.getElementById("myBtn");
-
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function () { scrollFunction() };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-    </script>
+    
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light mb-4 border">
         <a class="navbar-brand" href="{% url 'your_app:index' 'Home' %}">Home</a>
         <button class="navbar-toggler"
@@ -83,7 +45,7 @@
                     <a class="nav-link" href="{% url 'your_app:index' 'Option2' %}">Option2</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'your_app:index' 'Option3' %}">Option3</a>
+                    <a class="nav-link" href="{% url 'your_app:index' 'Option3' %}">Long Option3</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -92,7 +54,7 @@
                     </li>
                 {% endif %}
             </ul>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                     {% if request.user.is_staff %}
                         {% comment %} Responsive padding 'Mobile First' {% endcomment %}
@@ -106,8 +68,7 @@
                                href="#"
                                role="button"
                                id="dropdownMenuLink"
-                               data-toggle="dropdown"
-                               aria-haspopup="true"
+                               data-bs-toggle="dropdown"
                                aria-expanded="false">
                                 {% if user.first_name %}
                                     {{ user.first_name }}
@@ -116,12 +77,12 @@
                                 {% endif %}
                                 - profile
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
-                                <a class="dropdown-item" href="{% url 'edit_user_details' %}">Name</a>
-                                <a class="dropdown-item" href="{% url 'account_email' %}">Emails</a>
-                                <a class="dropdown-item" href="{% url 'account_change_password' %}">Password</a>
-                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a></li>
+                                <li><a class="dropdown-item" href="{% url 'edit_user_details' %}">Name</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_email' %}">Emails</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Password</a></li>
+                            </ul>
                         </div>
                     </li>
                 {% else %}
@@ -154,11 +115,15 @@
                 {% if request.user.is_staff %}
                     <center>
                         <a href="./admin" target="blank">admin</a> -
-                        <a href="https://github.com/ClearSky0?tab=repositories" target="blank">github</a>
+                        <a href="https://github.com/GaryGod3/Django_All_Auth_Custom" target="blank">github</a>
                         <br/>
                     </center>
                 {% endif %}
             {% endblock footer %}
         </div>
     </main>
+
+    {% comment %} Load Bootstrap JS and Site JS {% endcomment %}
+    {% bootstrap_javascript %}
+    <script src="{% static 'js/scroll-to-top.js' %}"></script>
 </body>
