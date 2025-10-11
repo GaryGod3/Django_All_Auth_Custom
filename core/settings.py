@@ -24,7 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if os.getenv("DEBUG").lower() == "true" else False
+DEBUG = bool(int(os.getenv("DEBUG", 0)))
+SEND_EMAIL_IN_DEV = bool(
+    int(os.getenv("SEND_EMAIL_IN_DEV", 0))
+)  # 0 being a default to FALSE
 
 ALLOWED_HOSTS = []
 
@@ -156,9 +159,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# Email config
-USE_EMAIL_IN_DEV = False if os.getenv("USE_EMAIL_IN_DEV").lower() == "false" else True
 
 if (not DEBUG) or USE_EMAIL_IN_DEV:
     # Production or send a email in development
